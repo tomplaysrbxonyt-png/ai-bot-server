@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+print("OpenAI API Key =", os.getenv("OPENAI_API_KEY"))
+
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
@@ -28,3 +30,4 @@ def chat():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
