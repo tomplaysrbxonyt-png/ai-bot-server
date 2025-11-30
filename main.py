@@ -14,11 +14,10 @@ def chat():
     data = request.json
     user_message = data.get("message", "")
 
-    # Envoie du message vers ChatGPT
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "Tu es un bot IA dans un jeu Roblox. Répond de manière simple, utile et rapide."},
+            {"role": "system", "content": "Tu es un bot IA dans un jeu Roblox. Répond simplement."},
             {"role": "user", "content": user_message}
         ]
     )
