@@ -2,24 +2,22 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route("/ai", methods=["POST"])
-def ai_decision():
+@app.route("/chat", methods=["POST"])
+def chat():
     data = request.json
-    
-    player_distance = data.get("playerDistance", 100)
-    bot_health = data.get("botHealth", 100)
+    message = data.get("message", "").lower()
 
-    # Petites décisions d'IA
-    if bot_health < 30:
-        action = "retreat"  # se retirer
-    elif player_distance < 10:
-        action = "attack"   # attaquer
-    elif player_distance < 25:
-        action = "chase"    # poursuivre
+    # IA simple (tu peux améliorer)
+    if "bonjour" in message:
+        reply = "Salut ! Comment puis-je t'aider ?"
+    elif "qui es tu" in message:
+        reply = "Je suis un bot IA dans ton jeu Roblox !"
+    elif "aide" in message:
+        reply = "Bien sûr, je suis là pour t'aider."
     else:
-        action = "idle"     # attendre
+        reply = "Je n'ai pas compris, mais je vais m'améliorer !"
 
-    return jsonify({"action": action})
+    return jsonify({"reply": reply})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
